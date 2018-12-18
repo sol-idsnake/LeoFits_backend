@@ -1,7 +1,15 @@
 const Mutations = {
-  createDog(parent, args, ctx, info) {
-    // create Dog
-    console.log(args)
+  async createItem(parent, args, ctx, info) {
+    const item = ctx.db.mutation.createItem(
+      {
+        data: {
+          ...args
+        }
+      },
+      info
+    );
+
+    return item;
   }
 };
 
