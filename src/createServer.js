@@ -12,9 +12,9 @@ function createServer() {
       Mutation,
       Query
     },
-    // resolverValidationOptions: {
-      // requireResolversForResolveType: false
-    // },
+    resolverValidationOptions: {
+      requireResolversForResolveType: false
+    },
     context: req => ({ ...req, db })
   })
 }

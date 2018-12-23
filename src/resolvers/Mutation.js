@@ -8,7 +8,6 @@ const Mutations = {
       },
       info
     );
-
     return item;
   }
 };
