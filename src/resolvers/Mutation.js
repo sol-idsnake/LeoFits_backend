@@ -5,6 +5,7 @@ const { randomBytes } = require("crypto");
 // randombytes runs sync, require promisify to turn it into async
 // callback based functions turns into promise based functions with promisify
 const { promisify } = require("util");
+const { transport, makeANiceEmail } = require("../mail");
 
 const Mutations = {
   async createItem(parent, args, ctx, info) {
@@ -114,8 +115,17 @@ const Mutations = {
       where: { email: args.email },
       data: { resetToken, resetTokenExpiry }
     });
-    return { message: "Email was sent" };
     // email them the reset token
+    const mailRes = await transport.sendMail({
+      from: '"Hendrik Wendt" <info@hendrikwendt.com>',
+      to: user.email,
+      subject: "Your LeoFits password Reset",
+      html: makeANiceEmail(`Your Password Reset Token is here! \n\n
+        <a href="${
+          process.env.FRONTEND_URL
+        }/reset?resetToken=${resetToken}">Click here to reset your password</a>`)
+    });
+    return { message: "Email was sent" };
   },
   async resetPassword(parent, args, ctx, info) {
     // check if the passwords match
