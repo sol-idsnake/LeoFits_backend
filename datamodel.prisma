@@ -34,3 +34,24 @@ type CartItem {
   item: Item #relationship to Item
   user: User! #relationship to User
 }
+
+type OrderItem {
+  # can't have direct connect to Item because Item could be deleted
+  # item price could change and we don't want to change invoice price for user
+  id: ID! @unique
+  title: String!
+  description: String!
+  image: String!
+  largeImage: String!
+  price: Int!
+  quantity: Int! @default(value: 1)
+  user: User
+}
+
+type Order {
+  id: ID! @unique
+  items: [OrderItem!]!
+  total: Int!
+  user: User!
+  charge: String!
+}
