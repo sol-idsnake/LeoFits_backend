@@ -297,7 +297,8 @@ const Mutations = {
             price
             id
             description
-            image}
+            image
+            largeImage}
           }
         }`
     );
@@ -307,7 +308,6 @@ const Mutations = {
       (tally, cartItem) => tally + cartItem.item.price * cartItem.quantity,
       0
     );
-    console.log(amount);
     // create the stripe charge (turn token into $)
     // https://stripe.com/docs/charges
     const charge = await stripe.charges.create({
@@ -326,10 +326,23 @@ const Mutations = {
       return orderItem;
     });
     // create the order
-
+    const order = await ctx.db.mutation.createOrder({
+      data: {
+        total: charge.amount,
+        charge: charge.id,
+        items: { create: orderItems },
+        user: { connect: { id: userId } }
+      }
+    });
     // clean up - clear the users cart, delete cartItems
-
+    const cartItemIds = user.cart.map(cartItem => cartItem.id);
+    await ctx.db.mutation.deleteManyCartItems({
+      where: {
+        id_in: cartItemIds
+      }
+    });
     // return the order to the client
+    return order;
   }
 };
 
