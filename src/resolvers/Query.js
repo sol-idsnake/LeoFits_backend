@@ -1,13 +1,10 @@
 const { forwardTo } = require("prisma-binding");
 const { hasPermission } = require("../utils");
 
-// item: responsible to display single item.
-// TODO: custom resolver to send error to frontend if no single item found
-
 const Query = {
+  // forwardTo exposes aggregate data to frontend.
   items: forwardTo("db"),
   item: forwardTo("db"),
-  // itemsConnection exposes aggregate data to frontend.
   // Here to enable pagination
   itemsConnection: forwardTo("db"),
   // es6 syntax - me: function(parent...)
@@ -51,7 +48,7 @@ const Query = {
     const hasPermissionToSeeOrder = ctx.request.user.permissions.includes(
       "ADMIN"
     );
-    if (!ownsOrder || !hasPermission) {
+    if (!ownsOrder || !hasPermissionToSeeOrder) {
       throw new Error("Not authorized");
     }
     // return the order
