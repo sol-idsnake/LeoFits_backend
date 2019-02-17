@@ -1,10 +1,5 @@
 #endpoint: ${env:PRISMA_ENDPOINT}
-<<<<<<< HEAD
-endpoint: https://leo-fits-prod-17ad2814bb.herokuapp.com/leofits-prod/prod
-
-=======
 endpoint: https://leo-fits-prod-17ad2814bb.herokuapp.com/leo-fits-prod/prod
->>>>>>> bb4d56b0db657afd28b2509774772cd43134eb70
 datamodel: datamodel.prisma
 secret: ${env:PRISMA_SECRET}
 hooks:
