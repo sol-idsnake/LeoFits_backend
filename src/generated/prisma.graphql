@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # source: https://leo-fits-prod-17ad2814bb.herokuapp.com/leofits-prod/prod
 # timestamp: Tue Feb 12 2019 23:55:53 GMT-0500 (Eastern Standard Time)
+=======
+# source: https://leo-fits-prod-17ad2814bb.herokuapp.com/leo-fits-prod/prod
+# timestamp: Sat Feb 16 2019 10:36:21 GMT-0500 (Eastern Standard Time)
+>>>>>>> bb4d56b0db657afd28b2509774772cd43134eb70
 
 type AggregateCartItem {
   count: Int!
