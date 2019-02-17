@@ -1,5 +1,5 @@
-# source: https://us1.prisma.sh/hendrik-w-06ff3c/leofitstest/dev
-# timestamp: Tue Jan 15 2019 03:51:54 GMT-0500 (Eastern Standard Time)
+# source: https://leo-fits-prod-17ad2814bb.herokuapp.com/leofits-prod/prod
+# timestamp: Tue Feb 12 2019 23:55:53 GMT-0500 (Eastern Standard Time)
 
 type AggregateCartItem {
   count: Int!
@@ -213,7 +213,6 @@ input CartItemUpdateManyMutationInput {
 input CartItemUpdateManyWithoutUserInput {
   create: [CartItemCreateWithoutUserInput!]
   connect: [CartItemWhereUniqueInput!]
-  set: [CartItemWhereUniqueInput!]
   disconnect: [CartItemWhereUniqueInput!]
   delete: [CartItemWhereUniqueInput!]
   update: [CartItemUpdateWithWhereUniqueWithoutUserInput!]
@@ -1201,7 +1200,6 @@ input OrderItemUpdateManyDataInput {
 input OrderItemUpdateManyInput {
   create: [OrderItemCreateInput!]
   connect: [OrderItemWhereUniqueInput!]
-  set: [OrderItemWhereUniqueInput!]
   disconnect: [OrderItemWhereUniqueInput!]
   delete: [OrderItemWhereUniqueInput!]
   update: [OrderItemUpdateWithWhereUniqueNestedInput!]
