@@ -23,3 +23,6 @@ test/**/out
 
 # Environment Vars
 .env
+
+# Other
+build.md
